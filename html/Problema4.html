@@ -1,0 +1,567 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PROBLEMA 4</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-04-16"><meta name="DC.source" content="Problema4.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>PROBLEMA 4</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M1.1  Funciones An&oacute;nimas</a></li><li><a href="#9">M1.2 Operadores relacionales y la funci&oacute;n de paso de unidad</a></li><li><a href="#15">M1.3 Visualizando Operaciones en la Variable Independiente</a></li><li><a href="#20">M1.4 Integraci&oacute;n num&eacute;rica y estimaci&oacute;n de la energ&iacute;a de la se&ntilde;al.</a></li><li><a href="#29">Problema 5</a></li></ul></div><h2 id="1">M1.1  Funciones An&oacute;nimas</h2><p>Muchas funciones simples se representan m&aacute;s convenientemente mediante el uso de funciones an&oacute;nimas en MATLAB. Una funci&oacute;n an&oacute;nima proporciona una representaci&oacute;n simb&oacute;lica de una funci&oacute;n definida en t&eacute;rminos de operadores y funciones de MATLAB. Por ejemplo, considere definir la siguiente se&ntilde;al: <img src="Problema4_eq11288841730012932239.png" alt="$f(t)=e^{-t}cos(2 \pi t)$"></p><pre class="codeinput">f = @(t) exp(-t).*cos(2*pi*t);
+</pre><p>El primer argumento de la funci&oacute;n an&oacute;nima identidfica la variable o las variables de las cual depende dicha funci&oacute;n. Una vez definida <img src="Problema4_eq09478123530129115431.png" alt="$f(t)$"> puede evaluarse simplemente pasando los valores de entrada de inter&eacute;s. Por ejemplo:</p><pre class="codeinput">t = 0;
+f(t)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><p>El mismo resultado se obtiene al pasar <img src="Problema4_eq16912281546434447644.png" alt="$t=0$"> directamente.</p><pre class="codeinput">f(0)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><p>Las entradas vectoriales permiten la evaluaci&oacute;n de m&uacute;ltiples valores simult&aacute;neamente. Considere la tarea de trazar <img src="Problema4_eq09478123530129115431.png" alt="$f(t)$"> sobre el intervalo <img src="Problema4_eq15938081128308663560.png" alt="$(-2 \leq t \leq2)$">. El comportamiento general de la funci&oacute;n es claro: <img src="Problema4_eq09478123530129115431.png" alt="$f(t)$"> debe oscilar cuatro veces con una envoltura en descomposici&oacute;n. Dado que los bocetos manuales precisos son engorrosos, las gr&aacute;ficas generadas por MATLAB son una alternativa atractiva.</p><p>Supongamos que el vector t se elige para incluir solo los n&uacute;meros enteros contenidos en <img src="Problema4_eq15938081128308663560.png" alt="$(-2 \leq t \leq2)$">, a saber, <img src="Problema4_eq02512188277393387566.png" alt="$[-2, -1, 0, 1, 2]$">.</p><pre class="codeinput">t = (-2:2)
+</pre><pre class="codeoutput">
+t =
+
+    -2    -1     0     1     2
+
+</pre><p>Esta entrada vectorial se eval&uacute;a para formar una salida vectorial.</p><pre class="codeinput">f(t)
+</pre><pre class="codeoutput">
+ans =
+
+    7.3891    2.7183    1.0000    0.3679    0.1353
+
+</pre><p>El comando plot representa el resultado gr&aacute;fico que es el siguiente.</p><pre class="codeinput">plot(t,f(t));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'f(t)'</span>);
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="Problema4_01.png" alt=""> <p>Las l&iacute;neas de la cuadr&iacute;cula, agregadas mediante el comando " grid ", ayudan a la identificaci&oacute;n de la funci&oacute;n. Desafortunadamente, la gr&aacute;fica no ilustra el comportamiento oscilatorio esperado. Se requieren m&aacute;s puntos para representar adecuadamente f (t).</p><p>Entonces la pregunta es, &iquest;cu&aacute;ntos puntos son suficientes?. Si se eligen pocos puntos, la informaci&oacute;n se pierde. Si se eligen demasiados puntos, la memoria y el tiempo se pierden. Se necesita un equilibrio. Para las funciones oscilatorias, el trazado de 20 a 200 puntos por oscilaci&oacute;n suele ser adecuado. Para el presente caso, se elige t para dar 100 puntos por oscilaci&oacute;n.</p><pre class="codeinput">t=linspace(-2,2,400);
+</pre><p>De nuevo, la funci&oacute;n es evaluada y trazada.</p><pre class="codeinput">plot(t,f(t));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'f(t)'</span>);
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="Problema4_02.png" alt=""> <h2 id="9">M1.2 Operadores relacionales y la funci&oacute;n de paso de unidad</h2><p>La funci&oacute;n escal&oacute;n unitario <img src="Problema4_eq17794740544861059683.png" alt="$u(t)$"> surge naturalmente en muchas situaciones pr&aacute;cticas. Por ejemplo, un escal&oacute;n unitario puede modelar el acto de encender un sistema. Con la ayuda de operadores relacionales, las funciones an&oacute;nimas pueden representar los escalones unitarios.</p><p>En MATLAB, un operador relacional compara dos elementos. Si la comparaci&oacute;n es verdadera, se devuelve un verdadero l&oacute;gico (1). Si la comparaci&oacute;n es falsa, se devuelve un falso l&oacute;gico (0). Algunas veces llamadas funciones de indicador, los operadores relacionales indican si una condici&oacute;n es verdadera. Seis operadores relacionales est&aacute;n disponibles: <img src="Problema4_eq05893550106668201694.png" alt="$<$"> , <img src="Problema4_eq06505957384204771693.png" alt="$&gt;$"> , <img src="Problema4_eq08702962754466044616.png" alt="$\leq$"> , <img src="Problema4_eq10610683091831061410.png" alt="$\geq$"> , <img src="Problema4_eq07691328598606940960.png" alt="$==$"> y <img src="Problema4_eq01761275203890986149.png" alt="$\sim =$"> .</p><p>La funci&oacute;n escal&oacute;n unitario se define f&aacute;cilmente utilizando el operador relacional <img src="Problema4_eq10610683091831061410.png" alt="$\geq$"> .</p><pre class="codeinput">u = @(t) t&gt;=0;
+</pre><p>Cualquier funci&oacute;n con una discontinuidad de salto, como el escal&oacute;n unitario, es dif&iacute;cil de trazar. Considere trazar <img src="Problema4_eq17794740544861059683.png" alt="$u(t)$"> en el intervalo <img src="Problema4_eq15938081128308663560.png" alt="$(-2 \leq t \leq2)$">.</p><pre class="codeinput">t = (-2:2);
+plot (t,u(t));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'u(t)'</span>);
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="Problema4_03.png" alt=""> <p>Dos problemas significativos son evidentes en la gr&aacute;fica resultante. En primer lugar, MATLAB escala autom&aacute;ticamente los ejes del trazado para delimitar estrechamente los datos. En este caso, esta caracter&iacute;stica normalmente oculta la mayor parte de la gr&aacute;fica. En segundo lugar, MATLAB conecta los datos del trazado con las l&iacute;neas, lo que dificulta la visualizacion de una discontinuidad de salto real. La cantidad de elementos que contiene el vector t hace que se muestre una l&iacute;nea de pendiente err&oacute;nea entre <img src="Problema4_eq08517894583926015722.png" alt="$(-1 \leq t \leq0)$">. Estas situaciones las podemos corregir de la siguiente manera.</p><pre class="codeinput">t = (-2:0.01:2);    <span class="comment">%Agregamos mas elementos a vector t</span>
+plot (t,u(t));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'u(t)'</span>);
+xlim([-2 2]);       <span class="comment">%Especificamos los limites de</span>
+ylim([-0.5 1.5]);   <span class="comment">%visualizacion de los ejes X y Y</span>
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="Problema4_04.png" alt=""> <p>Los operadores relacionales se pueden combinar utilizando AND l&oacute;gico <img src="Problema4_eq18130838241112241002.png" alt="$\&amp;$">, OR l&oacute;gico <img src="Problema4_eq01236314083298718954.png" alt="$|$"> y negaci&oacute;n l&oacute;gica <img src="Problema4_eq03704254661887931193.png" alt="$\sim$">.</p><p>Por ejemplo, <img src="Problema4_eq01123588553097428695.png" alt="$(t&gt;0)\&amp;(t<1)$"> y <img src="Problema4_eq16999153196484057632.png" alt="$\sim((t \leq 0) | (t \geq 1))$"> ambas pruebas si <img src="Problema4_eq17348159389685810853.png" alt="$(0 \leq t \leq1)$"> Para demostrar, considere definir y trazar el pulso unitario <img src="Problema4_eq14169428081249709707.png" alt="$p(t)=u(t)-u(t-1)$"></p><pre class="codeinput">p = @(t) (t&gt;=0 &amp; t&lt;1);
+t = (-1:0.01:2);
+plot(t,p(t));
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'p(t) = u(t) - u(t-1)'</span>);
+grid <span class="string">on</span>;
+xlim([-1 2]);
+ylim([-0.5 1.5]);
+</pre><img vspace="5" hspace="5" src="Problema4_05.png" alt=""> <p>Para los operandos escalares, MATLAB tambi&eacute;n admite dos construcciones l&oacute;gicas de cortocircuito. Un AND l&oacute;gico de cortocircuito se realiza utilizando <img src="Problema4_eq12265680068644919452.png" alt="$\&amp;\&amp;$">, y un OR l&oacute;gico de cortocircuito se realiza utilizando <img src="Problema4_eq08516481212186507504.png" alt="$\|$">. Los operadores l&oacute;gicos de cortocircuito son a menudo m&aacute;s eficientes que los operadores l&oacute;gicos tradicionales porque prueban la segunda parte de la expresi&oacute;n solo cuando es necesario. Es decir, cuando la expresi&oacute;n escalar A se encuentra falsa en <img src="Problema4_eq11808409711314198440.png" alt="$(A \&amp;\&amp; B)$">, la expresi&oacute;n escalar <img src="Problema4_eq10170753361147586657.png" alt="$B$"> no se eval&uacute;a, ya que un resultado falso ya est&aacute; garantizado. De manera similar, la expresi&oacute;n escalar <img src="Problema4_eq10170753361147586657.png" alt="$B$"> no se eval&uacute;a cuando la expresi&oacute;n escalar A se encuentra verdadera en <img src="Problema4_eq01199704427440462431.png" alt="$(A \| B)$">, ya que un resultado verdadero ya est&aacute; garantizado.</p><h2 id="15">M1.3 Visualizando Operaciones en la Variable Independiente</h2><p>Com&uacute;nmente se realizan dos operaciones en la variable independiente de una funci&oacute;n: traslacion y escalamiento. Las funciones an&oacute;nimas son adecuadas para investigar ambas operaciones.</p><p>Considere la funci&oacute;n <img src="Problema4_eq12925940793298259946.png" alt="$g(t)= f(t)u(t) = e^{-t}cos(2 \pi t)u(t)$"> ya que en MATLAB no es posible multiplicar funciones an&oacute;nimas se necesita definir expl&iacute;citamente a <img src="Problema4_eq00097224828082125527.png" alt="$g(t)$"></p><pre class="codeinput">g = @(t) exp(-t).*cos(2*pi*t).*(t&gt;=0);
+</pre><p>Una operacion de traslacion y escalamiento se representa por <img src="Problema4_eq15110653458722215955.png" alt="$g(at+b)$">, donde a y b son constantes reales arbitrarias. Como ejemplo, considere la posibilidad de trazar <img src="Problema4_eq14491512693946539684.png" alt="$g(2t+1)$"> sobre el intervalo <img src="Problema4_eq15938081128308663560.png" alt="$(-2 \leq t \leq2)$"></p><pre class="codeinput">t = (-2:0.01:2);
+g1 = g(2*t+1);
+plot(t,g1);
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'g(2t+1)'</span>);
+grid <span class="string">on</span>;
+xlim([-2 2]);
+ylim([-1 1.5]);
+</pre><img vspace="5" hspace="5" src="Problema4_06.png" alt=""> <p>Con <img src="Problema4_eq13176458287187595405.png" alt="$a=2$"> la funcion se comprime por un factor de 2, lo que da como resultado dos veces las oscilaciones por unidad t. A&ntilde;adiendo la condici&oacute;n <img src="Problema4_eq04900822634738625954.png" alt="$b&gt;0$">, la forma de onda se desplaza hacia la izquierda.</p><p>A continuaci&oacute;n, considere la posibilidad de trazar <img src="Problema4_eq06774630882772102309.png" alt="$g(-t+1)$"> sobre el intervalo <img src="Problema4_eq15938081128308663560.png" alt="$(-2 \leq t \leq2)$">. Con <img src="Problema4_eq09024988935463075196.png" alt="$a<0$"> , la forma de onda se reflejar&aacute;, al agregar la traslacion con <img src="Problema4_eq04900822634738625954.png" alt="$b&gt;0$">, la forma de onda final se desplaza a la derecha.</p><pre class="codeinput">g2 = g(-t+1);
+plot(t,g2);
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'g(-t+1)'</span>);
+grid <span class="string">on</span>;
+xlim([-2 2]);
+ylim([-1 1.5]);
+</pre><img vspace="5" hspace="5" src="Problema4_07.png" alt=""> <p>Como se puede apreciar los ejemplos anteriores son relativamente sencillos, por lo que ahora consideraremos trazar la siguiente funcion <img src="Problema4_eq17232676470980988946.png" alt="$h(t)=g(2t+1)+g(-t+1)$"> esto sobre el intervalo <img src="Problema4_eq15938081128308663560.png" alt="$(-2 \leq t \leq2)$"></p><pre class="codeinput">g1 = g(2*t+1);
+g2 = g(-t+1);
+h = g1+g2;
+plot(t,h);
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'h(t) = g(2t+1) + g(-t+1)'</span>);
+grid <span class="string">on</span>;
+xlim([-2 2]);
+ylim([-1 1.5]);
+</pre><img vspace="5" hspace="5" src="Problema4_08.png" alt=""> <p>Observe que un bosquejo a mano de la funcion <img src="Problema4_eq01530800854203283037.png" alt="$h(t)$"> posee cierto grado de dificultad, pero en MATLAB con funciones an&oacute;nimas ha sido bastante sencillo.</p><h2 id="20">M1.4 Integraci&oacute;n num&eacute;rica y estimaci&oacute;n de la energ&iacute;a de la se&ntilde;al.</h2><p>A menudo muchas se&ntilde;ales interesantes tienen representaciones matem&aacute;ticas no triviales. Calcular la energ&iacute;a de la se&ntilde;al, que implica integrar la norma al cuadrado de dichas se&ntilde;ales, puede ser una tarea desalentadora. Afortunadamente, muchas integrales dif&iacute;ciles se pueden estimar con precisi&oacute;n mediante t&eacute;cnicas de integraci&oacute;n num&eacute;rica. Incluso si la integraci&oacute;n parece simple, la integraci&oacute;n num&eacute;rica proporciona una buena manera de verificar los resultados anal&iacute;ticos.</p><p>Para comenzar, considere la siguiente se&ntilde;al simple.</p><p><img src="Problema4_eq02479177066401231825.png" alt="$x(t)=e^{-t}[u(t)-u(t-1)]$"> .</p><p>La energ&iacute;a de <img src="Problema4_eq14833433867325483769.png" alt="$x(t)$"> se representa como.</p><p><img src="Problema4_eq13353874721874171907.png" alt="$Ex=\int_{-\infty}^{\infty}\|x(t)\|^{2}\,dt  =  \int_{0}^{1}e^{-2t}\,dt =  Ex=0.5(1-e^{-2}) \approx 0.4323$"></p><p>La integral de energ&iacute;a tambi&eacute;n puede ser evaluada num&eacute;ricamente. Consideraremos realizar un m&eacute;todo simple de aproximaci&oacute;n rectangular, eval&uacute;e el integrando en puntos uniformemente separados por <img src="Problema4_eq10048187846263438288.png" alt="$\bigtriangleup t$">, multipliqe cada uno por <img src="Problema4_eq10048187846263438288.png" alt="$\bigtriangleup t$"> para caluclar as &aacute;reas del rect&aacute;ngulo y luego sumetodos los rect&aacute;ngulos.</p><p>Primero, creamos la funci&oacute;n x (t).</p><pre class="codeinput">x = @(t) exp(-t).*(t&gt;=0 &amp; t&lt;1);
+</pre><p>Al dejar <img src="Problema4_eq07422026966937850281.png" alt="$\bigtriangleup t=0.01$">, se crea un vector de tiempo adecuado.</p><pre class="codeinput">t = (0:0.01:1);
+</pre><p>El resultado final se calcula utilizando el comando suma.</p><pre class="codeinput">Ex = sum(x(t).*x(t)*0.01)
+</pre><pre class="codeoutput">
+Ex =
+
+    0.4367
+
+</pre><p>El resultado no es perfecto, pero al 1% de error relativo est&aacute; cerca. Al reducir <img src="Problema4_eq10048187846263438288.png" alt="$\bigtriangleup t$"> , se mejora la aproximaci&oacute;n. Por ejemplo, <img src="Problema4_eq17228821670381333952.png" alt="$\bigtriangleup t=0.001$"> produce.</p><pre class="codeinput">t = (0:0.001:1);
+Ex = sum(x(t).*x(t)*0.001)
+</pre><pre class="codeoutput">
+Ex =
+
+    0.4328
+
+</pre><p>0.1% de error relativo.</p><p>Aunque es f&aacute;cil de visualizar, la aproximaci&oacute;n rectangular no es la mejor t&eacute;cnica de integraci&oacute;n num&eacute;rica. La funci&oacute;n MATLAB quad implementa una mejor t&eacute;cnica de integraci&oacute;n num&eacute;rica llamada cuadratura de Simpson adaptativa recursiva. Para operar, quad requiere una funci&oacute;n que describa el integrando, el l&iacute;mite inferior de integraci&oacute;n y el l&iacute;mite superior de integraci&oacute;n. Tenga en cuenta que no es necesario especificar ?t. Para usar quad para estimar Ex, primero se debe describir el integrando.</p><pre class="codeinput">x_2 = @(t) exp(-2*t).*(t&gt;=0 &amp; t&lt;1);   <span class="comment">% x(t) elevada al cuadrado</span>
+</pre><p>La estimaci&oacute;n de Ex sigue inmediatamente.</p><pre class="codeinput">Ex = quad(x_2,0,1)  <span class="comment">%Por alguna razon esta funci&oacute;n esta siendo removida de MATLAB conforme se v&aacute; actualizando</span>
+</pre><pre class="codeoutput">
+Ex =
+
+    0.4323
+
+</pre><p>Se pueden usar las mismas t&eacute;cnicas para estimar la energ&iacute;a de se&ntilde;ales m&aacute;s complejas. Considere <img src="Problema4_eq00097224828082125527.png" alt="$g(t)$"> definida previamente. La energ&iacute;a se expresa como.</p><p><img src="Problema4_eq08745958007634673536.png" alt="$Ex=\int_{0}^{\infty}e^{-2t}cos^{2}(2 \pi t)u(t)\,dt$"></p><p>Existe una soluci&oacute;n de forma cerrada, pero requiere un poco de esfuerzo. MATLAB proporciona una respuesta m&aacute;s r&aacute;pida.</p><pre class="codeinput">g_2 = @(t) exp(-2*t).*(cos(2*pi*t).^2).*(t&gt;=0);
+</pre><p>Aunque el l&iacute;mite superior de integraci&oacute;n es infinito, la envoltura en descomposici&oacute;n exponencial garantiza que <img src="Problema4_eq00097224828082125527.png" alt="$g(t)$"> sea efectivamente cero mucho antes de <img src="Problema4_eq14204479301822374312.png" alt="$t=100$">. Por lo tanto, se usa un l&iacute;mite superior de <img src="Problema4_eq14204479301822374312.png" alt="$t=100$"> junto con %\bigtriangleup t=0.001%.</p><pre class="codeinput">t = (0:0.001:100);
+Eg = sum(g_2(t)*0.001)
+</pre><pre class="codeoutput">
+Eg =
+
+    0.2567
+
+</pre><p>Se obtiene una aproximaci&oacute;n ligeramente mejor con la funci&oacute;n quad.</p><pre class="codeinput">Eg = quad(g_2,0,100)
+</pre><pre class="codeoutput">
+Eg =
+
+    0.2562
+
+</pre><h2 id="29">Problema 5</h2><p>Para la se&ntilde;al <img src="Problema4_eq10967790203392305396.png" alt="$x(t)=-t[u(t+4)-u(t)] + t[u(t)-u(t-2)]$"> realice las graficas</p><p>a) <img src="Problema4_eq12657945112240979270.png" alt="$x(t-4)$"></p><p>b) <img src="Problema4_eq17012574930567585137.png" alt="$x(t/1.5)$"></p><p>c) <img src="Problema4_eq09897293323470263254.png" alt="$x(-t)$"></p><p>d) <img src="Problema4_eq03542025780904024759.png" alt="$x(2t-4)$"></p><p>e) <img src="Problema4_eq06543333246515609381.png" alt="$x(2-t)$"></p><pre class="codeinput">x = @(t) -t.*(t&gt;=-4 &amp; t&lt;0) + t.*(t&gt;=0 &amp; t&lt;=2);
+t=[-10:0.001:10];
+y=x(t);
+plot(t,y);
+xlim([-10 10]);
+ylim([-1 5]);
+grid <span class="string">on</span>;
+title(<span class="string">"Problema 1.2.2 Lathi"</span>)
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'x(t)=-t[u(t+4)-u(t)]+t[u(t)-u(t-2)'</span>);
+</pre><img vspace="5" hspace="5" src="Problema4_09.png" alt=""> <pre class="codeinput">a=x(t-4);
+plot(t,a);
+xlim([-10 10]);
+ylim([-1 5]);
+grid <span class="string">on</span>;
+title(<span class="string">"Inciso a)"</span>)
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'x(t-4)'</span>);
+</pre><img vspace="5" hspace="5" src="Problema4_10.png" alt=""> <pre class="codeinput">b=x((1/1.5)*t);
+plot(t,b);
+xlim([-10 10]);
+ylim([-1 5]);
+grid <span class="string">on</span>;
+title(<span class="string">"Inciso b)"</span>)
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'x(t/1.5)'</span>);
+</pre><img vspace="5" hspace="5" src="Problema4_11.png" alt=""> <pre class="codeinput">c=x(-t);
+plot(t,c);
+xlim([-10 10]);
+ylim([-1 5]);
+grid <span class="string">on</span>;
+title(<span class="string">"Inciso c)"</span>)
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'x(-t)'</span>);
+</pre><img vspace="5" hspace="5" src="Problema4_12.png" alt=""> <pre class="codeinput">d=x(2*t-4);
+plot(t,d);
+xlim([-10 10]);
+ylim([-1 5]);
+grid <span class="string">on</span>;
+title(<span class="string">"Inciso d)"</span>)
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'x(2t-4)'</span>);
+</pre><img vspace="5" hspace="5" src="Problema4_13.png" alt=""> <pre class="codeinput">e=x(2-t);
+plot(t,e);
+xlim([-10 10]);
+ylim([-1 5]);
+grid <span class="string">on</span>;
+title(<span class="string">"Inciso e)"</span>)
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'x(2-t)'</span>);
+</pre><img vspace="5" hspace="5" src="Problema4_14.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% PROBLEMA 4
+%   
+%% M1.1  Funciones Anónimas
+% Muchas funciones simples se representan más convenientemente mediante el 
+% uso de funciones anónimas en MATLAB. Una función anónima proporciona una 
+% representación simbólica de una función definida en términos de operadores 
+% y funciones de MATLAB. Por ejemplo, considere definir la siguiente señal:
+% $f(t)=e^{-t}cos(2 \pi t)$
+f = @(t) exp(-t).*cos(2*pi*t);
+%%
+% El primer argumento de la función anónima identidfica la variable o las
+% variables de las cual depende dicha función.
+% Una vez definida $f(t)$ puede evaluarse simplemente pasando los valores
+% de entrada de interés. Por ejemplo:
+t = 0;
+f(t)
+%%
+% El mismo resultado se obtiene al pasar $t=0$ directamente.
+f(0)
+%%
+% Las entradas vectoriales permiten la evaluación de múltiples valores
+% simultáneamente. Considere la tarea de trazar $f(t)$ sobre el intervalo
+% $(-2 \leq t \leq2)$. El comportamiento general de la función es claro: $f(t)$
+% debe oscilar cuatro veces con una envoltura en descomposición.
+% Dado que los bocetos manuales precisos son engorrosos, las gráficas
+% generadas por MATLAB son una alternativa atractiva.
+%
+% Supongamos que el vector t se elige para incluir solo los números enteros
+% contenidos en $(-2 \leq t \leq2)$, a saber, $[-2, -1, 0, 1, 2]$.
+t = (-2:2)
+%%
+% Esta entrada vectorial se evalúa para formar una salida vectorial.
+f(t)
+%%
+% El comando plot representa el resultado gráfico que es el siguiente.
+plot(t,f(t));
+xlabel('t');
+ylabel('f(t)');
+grid on;
+%%
+% Las líneas de la cuadrícula, agregadas mediante el comando " grid ",
+% ayudan a la identificación de la función. Desafortunadamente, la gráfica
+% no ilustra el comportamiento oscilatorio esperado. Se requieren más
+% puntos para representar adecuadamente f (t).
+%
+% Entonces la pregunta es, ¿cuántos puntos son suficientes?. Si se
+% eligen pocos puntos, la información se pierde. Si se eligen demasiados
+% puntos, la memoria y el tiempo se pierden. Se necesita un equilibrio. Para
+% las funciones oscilatorias, el trazado de 20 a 200 puntos por oscilación
+% suele ser adecuado. Para el presente caso, se elige t para dar 100 puntos
+% por oscilación.
+t=linspace(-2,2,400);
+%%
+% De nuevo, la función es evaluada y trazada.
+plot(t,f(t));
+xlabel('t');
+ylabel('f(t)');
+grid on;
+%% M1.2 Operadores relacionales y la función de paso de unidad
+% La función escalón unitario $u(t)$ surge naturalmente en muchas
+% situaciones prácticas. Por ejemplo, un escalón unitario puede modelar el
+% acto de encender un sistema. Con la ayuda de operadores relacionales,
+% las funciones anónimas pueden representar los escalones unitarios.
+% 
+% En MATLAB, un operador relacional compara dos elementos. Si la
+% comparación es verdadera, se devuelve un verdadero lógico (1). Si la
+% comparación es falsa, se devuelve un falso lógico (0). Algunas veces
+% llamadas funciones de indicador, los operadores relacionales indican si
+% una condición es verdadera. Seis operadores relacionales están
+% disponibles: $<$ , $>$ , $\leq$ , $\geq$ , $==$ y $\sim =$ .
+%%
+% La función escalón unitario se define fácilmente utilizando el operador
+% relacional $\geq$ .
+u = @(t) t>=0;
+%%
+% Cualquier función con una discontinuidad de salto, como el escalón
+% unitario, es difícil de trazar. Considere trazar $u(t)$ en el intervalo
+% $(-2 \leq t \leq2)$. 
+t = (-2:2);
+plot (t,u(t));
+xlabel('t');
+ylabel('u(t)');
+grid on;
+%%
+% Dos problemas significativos son evidentes en la gráfica resultante. En
+% primer lugar, MATLAB escala automáticamente los ejes del trazado para
+% delimitar estrechamente los datos. En este caso, esta característica
+% normalmente oculta la mayor parte de la gráfica. En segundo lugar, MATLAB
+% conecta los datos del trazado con las líneas, lo que dificulta la
+% visualizacion de una discontinuidad de salto real. La cantidad de
+% elementos que contiene el vector t hace que se muestre una línea de
+% pendiente errónea entre $(-1 \leq t \leq0)$.  
+% Estas situaciones las podemos corregir de la siguiente manera.
+t = (-2:0.01:2);    %Agregamos mas elementos a vector t
+plot (t,u(t));      
+xlabel('t');        
+ylabel('u(t)');     
+xlim([-2 2]);       %Especificamos los limites de
+ylim([-0.5 1.5]);   %visualizacion de los ejes X y Y
+grid on;
+%%
+% Los operadores relacionales se pueden combinar utilizando AND lógico
+% $\&$, OR lógico $|$ y negación lógica $\sim$.  
+% 
+% Por ejemplo, $(t>0)\&(t<1)$ y $\sim((t \leq 0) | (t \geq 1))$ ambas
+% pruebas si $(0 \leq t \leq1)$ Para demostrar, considere definir y trazar
+% el pulso unitario $p(t)=u(t)-u(t-1)$
+p = @(t) (t>=0 & t<1);
+t = (-1:0.01:2);
+plot(t,p(t));
+xlabel('t');
+ylabel('p(t) = u(t) - u(t-1)');
+grid on;
+xlim([-1 2]);
+ylim([-0.5 1.5]);
+%%
+% Para los operandos escalares, MATLAB también admite dos construcciones
+% lógicas de cortocircuito. Un AND lógico de cortocircuito se realiza
+% utilizando $\&\&$, y un OR lógico de cortocircuito se realiza utilizando
+% $\|$. Los operadores lógicos de cortocircuito son a menudo más eficientes
+% que los operadores lógicos tradicionales porque prueban la segunda parte
+% de la expresión solo cuando es necesario. Es decir, cuando la expresión
+% escalar A se encuentra falsa en $(A \&\& B)$, la expresión escalar $B$ no
+% se evalúa, ya que un resultado falso ya está garantizado. De manera
+% similar, la expresión escalar $B$ no se evalúa cuando la expresión
+% escalar A se encuentra verdadera en $(A \| B)$, ya que un resultado
+% verdadero ya está garantizado.
+%% M1.3 Visualizando Operaciones en la Variable Independiente
+% Comúnmente se realizan dos operaciones en la variable independiente de
+% una función: traslacion y escalamiento. Las funciones anónimas son
+% adecuadas para investigar ambas operaciones.
+%
+% Considere la función $g(t)= f(t)u(t) = e^{-t}cos(2 \pi t)u(t)$ ya que en
+% MATLAB no es posible multiplicar funciones anónimas se necesita definir
+% explícitamente a $g(t)$
+g = @(t) exp(-t).*cos(2*pi*t).*(t>=0);
+%%
+% Una operacion de traslacion y escalamiento se representa por $g(at+b)$,
+% donde a y b son constantes reales arbitrarias. Como ejemplo, considere la
+% posibilidad de trazar $g(2t+1)$ sobre el intervalo $(-2 \leq t \leq2)$
+t = (-2:0.01:2);
+g1 = g(2*t+1);
+plot(t,g1);
+xlabel('t');
+ylabel('g(2t+1)');
+grid on;
+xlim([-2 2]);
+ylim([-1 1.5]);
+%%
+% Con $a=2$ la funcion se comprime por un factor de 2, lo que da como
+% resultado dos veces las oscilaciones por unidad t. Añadiendo la condición
+% $b>0$, la forma de onda se desplaza hacia la izquierda.    
+% 
+% A continuación, considere la posibilidad de trazar $g(-t+1)$ sobre el
+% intervalo $(-2 \leq t \leq2)$. Con $a<0$ , la forma de onda se
+% reflejará, al agregar la traslacion con $b>0$, la forma de onda final se
+% desplaza a la derecha.
+g2 = g(-t+1);
+plot(t,g2);
+xlabel('t');
+ylabel('g(-t+1)');
+grid on;
+xlim([-2 2]);
+ylim([-1 1.5]);
+%% 
+% Como se puede apreciar los ejemplos anteriores son relativamente
+% sencillos, por lo que ahora consideraremos trazar la siguiente funcion
+% $h(t)=g(2t+1)+g(-t+1)$ esto sobre el intervalo $(-2 \leq t \leq2)$
+g1 = g(2*t+1);
+g2 = g(-t+1);
+h = g1+g2;
+plot(t,h);
+xlabel('t');
+ylabel('h(t) = g(2t+1) + g(-t+1)');
+grid on;
+xlim([-2 2]);
+ylim([-1 1.5]);
+%% 
+% Observe que un bosquejo a mano de la funcion $h(t)$ posee cierto grado de
+% dificultad, pero en MATLAB con funciones anónimas ha sido bastante
+% sencillo.
+%% M1.4 Integración numérica y estimación de la energía de la señal.
+% A menudo muchas señales interesantes tienen representaciones matemáticas no
+% triviales. Calcular la energía de la señal, que implica integrar la norma
+% al cuadrado de dichas señales, puede ser una tarea desalentadora.
+% Afortunadamente, muchas integrales difíciles se pueden estimar con
+% precisión mediante técnicas de integración numérica. Incluso si la
+% integración parece simple, la integración numérica proporciona una buena
+% manera de verificar los resultados analíticos.
+% 
+% Para comenzar, considere la siguiente señal simple.
+% 
+% $x(t)=e^{-t}[u(t)-u(t-1)]$ .
+% 
+% La energía de $x(t)$ se representa como.
+% 
+% $Ex=\int_{-\infty}^{\infty}\|x(t)\|^{2}\,dt  =  \int_{0}^{1}e^{-2t}\,dt
+% =  Ex=0.5(1-e^{-2}) \approx 0.4323$
+% 
+% La integral de energía también
+% puede ser evaluada numéricamente. Consideraremos realizar un método
+% simple de aproximación rectangular, evalúe el integrando en puntos
+% uniformemente separados por $\bigtriangleup t$, multipliqe cada uno por
+% $\bigtriangleup t$ para caluclar as áreas del rectángulo y luego
+% sumetodos los rectángulos.
+%
+% Primero, creamos la función x (t).
+x = @(t) exp(-t).*(t>=0 & t<1);
+%%
+% Al dejar $\bigtriangleup t=0.01$, se crea un vector de tiempo adecuado.
+t = (0:0.01:1);
+%%
+% El resultado final se calcula utilizando el comando suma.
+Ex = sum(x(t).*x(t)*0.01)
+%%
+% El resultado no es perfecto, pero al 1% de error relativo está cerca. Al
+% reducir $\bigtriangleup t$ , se mejora la aproximación. Por ejemplo,
+% $\bigtriangleup t=0.001$ produce.
+t = (0:0.001:1);
+Ex = sum(x(t).*x(t)*0.001)
+%%
+% 0.1% de error relativo.
+%
+% Aunque es fácil de visualizar, la aproximación rectangular no es la mejor
+% técnica de integración numérica. La función MATLAB quad implementa una
+% mejor técnica de integración numérica llamada cuadratura de Simpson
+% adaptativa recursiva. Para operar, quad requiere una función que describa
+% el integrando, el límite inferior de integración y el límite superior de
+% integración. Tenga en cuenta que no es necesario especificar ?t.
+% Para usar quad para estimar Ex, primero se debe describir el integrando.
+x_2 = @(t) exp(-2*t).*(t>=0 & t<1);   % x(t) elevada al cuadrado
+%%
+% La estimación de Ex sigue inmediatamente.
+Ex = quad(x_2,0,1)  %Por alguna razon esta función esta siendo removida de MATLAB conforme se vá actualizando
+%%
+% Se pueden usar las mismas técnicas para estimar la energía de señales más
+% complejas. Considere $g(t)$ definida previamente. La energía se expresa
+% como.
+% 
+% $Ex=\int_{0}^{\infty}e^{-2t}cos^{2}(2 \pi t)u(t)\,dt$
+% 
+% Existe una solución de forma cerrada, pero requiere un poco de esfuerzo.
+% MATLAB proporciona una respuesta más rápida.
+g_2 = @(t) exp(-2*t).*(cos(2*pi*t).^2).*(t>=0);
+%%
+% Aunque el límite superior de integración es infinito, la envoltura en
+% descomposición exponencial garantiza que $g(t)$ sea efectivamente cero
+% mucho antes de $t=100$. Por lo tanto, se usa un límite superior de
+% $t=100$ junto con %\bigtriangleup t=0.001%. 
+t = (0:0.001:100);
+Eg = sum(g_2(t)*0.001)
+%%
+% Se obtiene una aproximación ligeramente mejor con la función quad.
+Eg = quad(g_2,0,100)
+%% Problema 5
+% Para la señal $x(t)=-t[u(t+4)-u(t)] + t[u(t)-u(t-2)]$ realice las
+% graficas 
+% 
+% a) $x(t-4)$
+% 
+% b) $x(t/1.5)$
+% 
+% c) $x(-t)$
+% 
+% d) $x(2t-4)$
+% 
+% e) $x(2-t)$
+%% 
+x = @(t) -t.*(t>=-4 & t<0) + t.*(t>=0 & t<=2);
+t=[-10:0.001:10];
+y=x(t);
+plot(t,y);
+xlim([-10 10]);
+ylim([-1 5]);
+grid on;
+title("Problema 1.2.2 Lathi")
+xlabel('t');
+ylabel('x(t)=-t[u(t+4)-u(t)]+t[u(t)-u(t-2)');
+%%
+a=x(t-4);
+plot(t,a);
+xlim([-10 10]);
+ylim([-1 5]);
+grid on;
+title("Inciso a)")
+xlabel('t');
+ylabel('x(t-4)');
+%%
+b=x((1/1.5)*t);
+plot(t,b);
+xlim([-10 10]);
+ylim([-1 5]);
+grid on;
+title("Inciso b)")
+xlabel('t');
+ylabel('x(t/1.5)');
+%%
+c=x(-t);
+plot(t,c);
+xlim([-10 10]);
+ylim([-1 5]);
+grid on;
+title("Inciso c)")
+xlabel('t');
+ylabel('x(-t)');
+%%
+d=x(2*t-4);
+plot(t,d);
+xlim([-10 10]);
+ylim([-1 5]);
+grid on;
+title("Inciso d)")
+xlabel('t');
+ylabel('x(2t-4)');
+%%
+e=x(2-t);
+plot(t,e);
+xlim([-10 10]);
+ylim([-1 5]);
+grid on;
+title("Inciso e)")
+xlabel('t');
+ylabel('x(2-t)');
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
